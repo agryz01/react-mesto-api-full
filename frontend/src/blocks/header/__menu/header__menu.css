@@ -1,0 +1,21 @@
+.header__menu {
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  color: rgba(255, 255, 255, 1);
+  margin: 0;
+  /* display: none; */
+  margin-right: calc(42.43px - 4.82%);
+}
+
+.header__menu:hover {
+  opacity: .6;
+}
+
+@media (max-width: 920px) {
+  .header__menu {
+    font-size: 14px;
+  }
+}

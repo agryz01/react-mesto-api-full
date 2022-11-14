@@ -1,0 +1,20 @@
+.header__burger {
+background-image: url(../../../images/burger.svg);
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+height: 20px;
+width: 24px;
+display: none;
+}
+
+.header__burger:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media (max-width: 710px) {
+  .header__burger {
+    display: block;
+  }
+}

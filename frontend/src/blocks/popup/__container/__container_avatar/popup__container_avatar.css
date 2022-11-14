@@ -1,0 +1,8 @@
+.popup__container_avatar {
+  min-height: max-content;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px minmax(70px, min-content) auto;
+  justify-content: space-between;
+  box-sizing: border-box;
+}

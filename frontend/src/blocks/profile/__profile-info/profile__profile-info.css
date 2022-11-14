@@ -1,0 +1,10 @@
+.profile__profile-info {
+  grid-area: profile__profile-info;
+  padding-left: 30px;
+}
+
+@media (max-width: 400px) {
+  .profile__profile-info {
+    padding: 0;
+  }
+}

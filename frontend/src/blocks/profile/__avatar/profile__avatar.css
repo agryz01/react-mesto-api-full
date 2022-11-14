@@ -1,0 +1,40 @@
+.profile__avatar {
+  grid-area: profile__avatar;
+  width: 120px;
+  height: 120px;
+  /*background-image: url(../../../images/profile__image.jpg);*/
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  justify-items: center;
+  position: relative;
+}
+
+.profile__avatar::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url(../../../images/edit-button.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+  opacity: 0;
+  transition: .3s;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.profile__avatar:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 400px) {
+  .profile__avatar {
+    margin: 0 auto;
+  }
+}

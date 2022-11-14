@@ -1,0 +1,25 @@
+.popup__closing-icon {
+  background-image: url(../../../images/Close-Icon.svg);
+  background-size: cover;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  cursor: pointer;
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.popup__closing-icon:hover {
+  opacity: .6;
+}
+
+@media (max-width: 400px) {
+  .popup__closing-icon {
+  width: 20px;
+  height: 20px;
+  top: -36px;
+  right: 0;
+  }
+}

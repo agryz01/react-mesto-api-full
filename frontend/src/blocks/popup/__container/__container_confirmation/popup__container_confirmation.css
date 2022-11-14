@@ -1,0 +1,6 @@
+.popup__container_confirmation {
+  min-height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+}

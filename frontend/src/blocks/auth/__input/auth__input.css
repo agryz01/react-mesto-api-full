@@ -1,0 +1,16 @@
+.auth__input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: rgba(204, 204, 204, 1);
+  background-color: inherit;
+  border-style: none;
+  border-bottom: 1px solid rgba(204, 204, 204, 1);
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.auth__input:focus {
+  background-color: inherit;
+  border-color: none;
+}

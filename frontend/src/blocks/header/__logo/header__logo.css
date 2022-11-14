@@ -1,0 +1,8 @@
+.header__logo {
+  margin-left: calc(42.43px - 4.82%);
+  background-image: url(../../../images/logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: calc(6.16% + 87.7px);
+  padding-bottom: calc(1.4% + 20.7px);
+}

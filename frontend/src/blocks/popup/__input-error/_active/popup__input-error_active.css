@@ -1,0 +1,5 @@
+.popup__input-error_active {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility .3s, opacity .3s;
+}

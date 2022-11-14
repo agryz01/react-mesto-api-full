@@ -1,0 +1,19 @@
+.popup__container {
+  width: calc(15.42% + 232.67px);
+  /*min-height: 330px;*/
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px minmax(70px, min-content) minmax(70px, min-content) auto;
+  padding: 34px 37px 36px;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+@media (max-width: 970px) {
+  .popup__container {
+    padding: 25px 22px;
+  }
+}

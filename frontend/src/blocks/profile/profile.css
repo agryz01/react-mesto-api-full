@@ -1,0 +1,32 @@
+.profile {
+  padding-top: 40px;
+  padding-left: calc(18.85% - 41.33px);
+  padding-right: calc(18.85% - 41.33px);
+  display: grid;
+  grid-template-columns: 120px minmax(10px, max-content) 60px auto;
+  grid-template-rows: 120px;
+  grid-template-areas:
+    "profile__avatar profile__profile-info profile__edit-button profile__add-button";
+  align-items: center;
+}
+
+@media (max-width: 920px) {
+  .profile {
+    grid-template-columns: 120px minmax(10px, max-content) auto;
+    grid-template-rows: 1fr 80px;
+    grid-template-areas:
+      "profile__avatar profile__profile-info profile__edit-button"
+      "profile__add-button profile__add-button profile__add-button";
+  }
+}
+
+@media (max-width: 400px) {
+  .profile {
+    grid-template-columns: auto minmax(63px, max-content) auto;
+    grid-template-rows: 120px 116px 50px;
+    grid-template-areas:
+      "profile__avatar profile__avatar profile__avatar"
+      ". profile__profile-info profile__edit-button"
+      "profile__add-button profile__add-button profile__add-button";
+  }
+}
