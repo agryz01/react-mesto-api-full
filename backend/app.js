@@ -20,6 +20,18 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
+const allowedCors = [
+  'localhost:3000'
+];
+
+app.use(function(req, res, next) {
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  next();
+});
+
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
