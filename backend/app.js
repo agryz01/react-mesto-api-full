@@ -20,24 +20,36 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-const allowedCors = [
-  'localhost:3000'
-];
+// const allowedCors = [
+//   'localhost:3000'
+// ];
 
 app.use(function (req, res, next) {
-  const { origin } = req.headers;
+  // const { origin } = req.headers;
   const { method } = req;
   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
   }
-  if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
+  // if (allowedCors.includes(origin)) {
+  //   res.header('Access-Control-Allow-Origin', origin);
+  // }
   next();
 });
 
-
+app.use(function (req, res, next) {
+  // const { origin } = req.headers;
+  // const { method } = req;
+  // const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+  // if (method === 'OPTIONS') {
+  //   res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+  // }
+  // if (allowedCors.includes(origin)) {
+  //   res.header('Access-Control-Allow-Origin', origin);
+  // }
+  res.header('Access-Control-Allow-Origin', "*");
+  next();
+});
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
