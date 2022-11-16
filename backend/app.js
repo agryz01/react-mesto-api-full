@@ -18,38 +18,28 @@ mongoose.connect('mongodb://localhost:27017/mestodb');
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(requestLogger);
+const allowedCors = [
+  'http://localhost:3001',
+];
 
-// const allowedCors = [
-//   'localhost:3000'
-// ];
-
-app.use(function (req, res, next) {
-  // const { origin } = req.headers;
+app.use((req, res, next) => {
+  const { origin } = req.headers;
   const { method } = req;
-  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+  const requestHeaders = req.headers['access-control-request-headers'];
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', true);
+  }
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    return res.end();
   }
-  // if (allowedCors.includes(origin)) {
-  //   res.header('Access-Control-Allow-Origin', origin);
-  // }
-  next();
+  return next();
 });
 
-app.use(function (req, res, next) {
-  // const { origin } = req.headers;
-  // const { method } = req;
-  // const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
-  // if (method === 'OPTIONS') {
-  //   res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-  // }
-  // if (allowedCors.includes(origin)) {
-  //   res.header('Access-Control-Allow-Origin', origin);
-  // }
-  res.header('Access-Control-Allow-Origin', "*");
-  next();
-});
+app.use(requestLogger);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
