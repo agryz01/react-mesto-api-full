@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -20,6 +21,8 @@ app.use(cookieParser());
 
 const allowedCors = [
   'http://localhost:3001',
+  'htpp://agryz.students.nomoredomains.icu',
+  'htpps://agryz.students.nomoredomains.icu',
 ];
 
 app.use((req, res, next) => {
@@ -40,6 +43,12 @@ app.use((req, res, next) => {
 });
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({

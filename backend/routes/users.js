@@ -7,6 +7,7 @@ const {
   updateUser,
   updateAvatar,
   getUserMe,
+  logout,
 } = require('../controllers/users');
 
 router.get('/', getUsers);
@@ -27,5 +28,7 @@ router.patch('/me/avatar', celebrate({
     avatar: Joi.string().pattern(url),
   }),
 }), updateAvatar);
+
+router.post('/signout', logout);
 
 module.exports = router;

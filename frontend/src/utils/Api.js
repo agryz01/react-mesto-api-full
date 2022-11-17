@@ -8,6 +8,7 @@ export class Api {
   getUserInformation() {
     return fetch(`${this._url}users/me`, {
       method: 'GET',
+      credentials: 'include',
       headers: this._headers
     })
       .then(res => this._response(res));
@@ -16,6 +17,7 @@ export class Api {
   setUserInformation(yourname, yourjob) {
     return fetch(`${this._url}users/me`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: yourname,
@@ -28,14 +30,16 @@ export class Api {
   getCards() {
     return fetch(`${this._url}cards`, {
       method: 'GET',
+      credentials: 'include',
       headers: this._headers
     })
-    .then(res => this._response(res));
+      .then(res => this._response(res));
   }
 
   addCard(placename, placeurl) {
     return fetch(`${this._url}cards`, {
       method: 'POST',
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: placename,
@@ -48,6 +52,7 @@ export class Api {
   deletCard(idCard) {
     return fetch(`${this._url}cards/${idCard}`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: this._headers
     })
       .then(res => this._response(res));
@@ -58,6 +63,7 @@ export class Api {
       method: isFavourites
         ? 'DELETE'
         : 'PUT',
+      credentials: 'include',
       headers: this._headers
     })
       .then(res => this._response(res));
@@ -66,6 +72,7 @@ export class Api {
   setAvatar(url) {
     return fetch(`${this._url}users/me/avatar`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         avatar: url
@@ -73,12 +80,41 @@ export class Api {
     })
       .then(res => this._response(res));
   }
+
+  setUser(email, password) {
+    return fetch(`${this._url}signup`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: this._headers,
+      body: JSON.stringify({ password, email })
+    })
+      .then(res => this._response(res));
+  }
+
+  authUser(email, password) {
+    return fetch(`${this._url}signin`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: this._headers,
+      body: JSON.stringify({ password, email })
+    })
+      .then(res => this._response(res));
+  }
+
+  logout() {
+    return fetch(`${this._url}users/signout`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: this._headers
+    })
+      .then(res => this._response(res));
+  }
+
 }
 
 export const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-46/',
+  url: 'http://localhost:3000/',
   headers: {
-    authorization: '7db7170a-ac3c-4dc5-8594-c4340cfc9c1b',
     'Content-Type': 'application/json; charset=UTF-8'
   },
   response: res => {

@@ -36,7 +36,7 @@ export default class Auth {
 }
 
 export const auth = new Auth({
-  url: 'https://auth.nomoreparties.co/',
+  url: 'http://localhost:3000/',
   headers: {
     'Content-Type': 'application/json; charset=UTF-8'
   },

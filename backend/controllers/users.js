@@ -7,6 +7,8 @@ const BadRequestErr = require('../errors/BadRequestErr');
 const ConflictErr = require('../errors/ConflictErr');
 const NotFoundErr = require('../errors/NotFoundErr');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const getUsers = (req, res, next) => {
   User.find({})
     .then((user) => res.send(user))
@@ -77,8 +79,7 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'q@mDl|{rW|7K', { expiresIn: '7d' });
-      // res.send({ token });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
@@ -86,6 +87,10 @@ const login = (req, res, next) => {
         .send({ message: 'Токен сохранен в куки' });
     })
     .catch(next);
+};
+
+const logout = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Куки авторизации удалены' });
 };
 
 const getUserMe = (req, res, next) => {
@@ -101,5 +106,6 @@ module.exports = {
   updateUser,
   updateAvatar,
   login,
+  logout,
   getUserMe,
 };
