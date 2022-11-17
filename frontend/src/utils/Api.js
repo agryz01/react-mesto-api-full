@@ -113,7 +113,7 @@ export class Api {
 }
 
 export const api = new Api({
-  url: 'http://localhost:3000/',
+  url: 'http://agryz.students.nomoredomains.icu/',
   headers: {
     'Content-Type': 'application/json; charset=UTF-8'
   },
