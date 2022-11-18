@@ -5,6 +5,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 export default function Main(props) {
 
   const currentUser = React.useContext(CurrentUserContext);
+  const reversCards =  Array.from(props.cards).reverse();
 
   return (
     <main className="content">
@@ -19,7 +20,7 @@ export default function Main(props) {
       </section>
       <section className="list-of-places">
         <ul className="elements">
-          {props.cards.map((item) => (<Card onCardDelete={props.onCardDelete} onCardLike={props.onCardLike} onCardClick={props.onCardClick} card={item} key={item._id} />))}
+          {reversCards.map((item) => (<Card onCardDelete={props.onCardDelete} onCardLike={props.onCardLike} onCardClick={props.onCardClick} card={item} key={item._id} />))}
         </ul>
       </section>
     </main>);

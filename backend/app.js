@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 const allowedCors = [
+  'http://localhost:3000',
   'http://localhost:3001',
   'htpp://agryz.students.nomoredomains.icu',
   'htpps://agryz.students.nomoredomains.icu',

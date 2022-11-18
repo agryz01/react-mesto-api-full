@@ -20,7 +20,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
   const history = useHistory();
   const [email, setEmail] = React.useState('');
 
@@ -30,13 +30,16 @@ function App() {
       api.getCards()
     ])
       .then(([userData, cardData]) => {
+        setLoggedIn(true);
         setCards(cardData);
         setCurrentUser(userData);
+        setEmail(userData.email);
       })
       .catch((err) => {
+        setLoggedIn(false);
         console.log(err); // выведем ошибку в консоль
       })
-  }, [])
+  }, [loggedIn])
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -125,7 +128,7 @@ function App() {
     setIsLoading(true);
     api.addCard(name, link)
       .then((res) => {
-        setCards([res, ...cards]);
+        setCards([...cards, res]);
         closeAllPopups();
       })
       .catch((err) => {
