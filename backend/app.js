@@ -22,8 +22,8 @@ app.use(cookieParser());
 const allowedCors = [
   'http://localhost:3000',
   'http://localhost:3001',
-  'htpp://agryz.students.nomoredomains.icu',
-  'htpps://agryz.students.nomoredomains.icu',
+  'http://agryz.students.nomoredomains.icu',
+  'https://agryz.students.nomoredomains.icu',
 ];
 
 app.use((req, res, next) => {
