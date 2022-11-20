@@ -94,7 +94,7 @@ const logout = (req, res) => {
 };
 
 const getUserMe = (req, res, next) => {
-  User.findById(req.user._id, req.body)
+  User.findById(req.user._id)
     .then((user) => res.send(user))
     .catch(next);
 };
